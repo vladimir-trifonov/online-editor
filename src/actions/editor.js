@@ -1,12 +1,12 @@
 /* global fetch */
-export const TEXT_CHANGED = 'TEXT_CHANGED'
+export const EDITOR_CHANGED = 'EDITOR_CHANGED'
 
-const textChangedAction = text => ({
-  type: TEXT_CHANGED,
-  text
+const editorChangedAction = editor => ({
+  type: EDITOR_CHANGED,
+  editor
 })
 
-export function textChanged (dispatch, text) {
+export function editorChanged (dispatch, editor) {
   return fetch(`http://localhost:3030/api/editor`, {
     method: 'POST',
     headers: {
@@ -15,12 +15,12 @@ export function textChanged (dispatch, text) {
     },
     body: JSON.stringify(
       {
-        text,
-        action: TEXT_CHANGED
+        editor,
+        action: EDITOR_CHANGED
       }
     )
   })
     .then(response => response.json())
-    .then(({ text }) => dispatch(textChangedAction(text)))
+    .then(({ editor }) => dispatch(editorChangedAction(editor)))
     .catch(error => console.error(error))
 }

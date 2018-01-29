@@ -1,9 +1,9 @@
-import { TEXT_CHANGED } from '../actions/editor'
+import { EDITOR_CHANGED } from '../actions/editor'
 
-const editor = (state = { text: '' }, action) => {
+const editor = (state = null, action) => {
   switch (action.type) {
-    case TEXT_CHANGED:
-      return Object.assign({}, ...state, { text: action.text })
+    case EDITOR_CHANGED:
+      return JSON.parse(action.editor)
     default:
       return state
   }
